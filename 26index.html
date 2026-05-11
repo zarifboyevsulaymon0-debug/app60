@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR Code Generator</title>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+
+<style>
+
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#0f172a;
+    font-family:Arial;
+}
+
+.container{
+    width:380px;
+    background:#1e293b;
+    padding:25px;
+    border-radius:18px;
+    text-align:center;
+    box-shadow:0 0 20px rgba(0,0,0,0.4);
+}
+
+h2{
+    color:white;
+    margin-bottom:20px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    border:none;
+    outline:none;
+    border-radius:12px;
+    font-size:15px;
+    box-sizing:border-box;
+}
+
+button{
+    width:100%;
+    margin-top:15px;
+    padding:12px;
+    border:none;
+    border-radius:12px;
+    background:#22c55e;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#16a34a;
+}
+
+#qrcode{
+    margin-top:20px;
+    background:white;
+    padding:10px;
+    border-radius:12px;
+    display:inline-block;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>QR Code Generator</h2>
+
+    <input type="text"
+    id="text"
+    placeholder="Link yoki matn kiriting">
+
+    <button onclick="generateQR()">
+        Generate QR
+    </button>
+
+    <div id="qrcode"></div>
+
+</div>
+
+<script>
+
+function generateQR(){
+
+    let text =
+    document.getElementById("text").value;
+
+    let qr =
+    document.getElementById("qrcode");
+
+    qr.innerHTML = "";
+
+    QRCode.toCanvas(text, function(err, canvas){
+
+        if(err) return;
+
+        qr.appendChild(canvas);
+
+    });
+}
+
+</script>
+
+</body>
+</html>
